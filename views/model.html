@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Events</title>
+    <link href="../assets/style.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1>My Events</h1>
+        <h2>My Account</h2>
+    </header>
+    <!--<form id="event-form" method="POST" action="/">
+        <input type="text" name="eventName" id="eventName" placeholder="Event Name" required> <br>
+        <input type="text" name="eventDesc" id="eventDesc" placeholder="Description" required> <br>
+        <input type="text" name="eventDate" id="eventDate" placeholder="Date" required> <br>
+        <input type="text" name="eventTime" id="eventTime" placeholder="Time" required> <br>
+        <input type="text" name="eventLoc" id="eventLoc" placeholder="Location" required> <br>
+        <input type="text" name="eventReminder" id="eventReminder" placeholder="Reminder" required> <br>
+        <button type="submit">Add Event</button>
+    </form>-->
+    <div class="container">
+        <div class="card-one card-container">
+            <h1>Add an event!</h1>
+            <p></p>
+            <button type="button" id="card-one-button1">Click Here!</button>
+        </div>
+        <div class="card-one-on card-container">
+            <h1>on!</h1>
+            <button type="button" id="card-one-button2">Details</button>
+        </div>
+        <div class="card-two card-container">
+            <h1>Add an event!</h1>
+            <p></p>
+            <button type="button">Click Here!</button>
+        </div>
+        <div class="card-three card-container">
+            <h1>Add an event!</h1>
+            <p></p>
+            <button type="button">Click Here!</button>
+        </div>
+        <div class="card-four card-container">
+            <h1>Add an event!</h1>
+            <p></p>
+            <button type="button">Click Here!</button>
+        </div>
+        <div class="card-five card-container">
+            <h1>Add an event!</h1>
+            <p></p>
+            <button type="button">Click Here!</button>
+        </div>
+        <div class="card-six card-container">
+            <h1>Add an event!</h1>
+            <p></p>
+            <button type="button">Click Here!</button>
+        </div>
+        <div class="card-seven card-container">
+            <h1>Add an event!</h1>
+            <p></p>
+            <button type="button">Click Here!</button>
+        </div>
+        <div class="card-eight card-container">
+            <h1>Add an event!</h1>
+            <p></p>
+            <button type="button">Click Here!</button>
+        </div>
+        <div class="card-nine card-container">
+            <h1>Add an event!</h1>
+            <p></p>
+            <button type="button">Click Here!</button>
+        </div>
+        <div class="card-ten card-container">
+            <h1>Add an event!</h1>
+            <p></p>
+            <button type="button">Click Here!</button>
+        </div>
+    </div> <!--container-->
+    <div class="event-form-overlay">
+        <img src="../images/return arrow.png" id="return" alt="return arrow">
+        <h1>Edit Details for:</h1>
+        <h2>Half-ironman Wisconsin</h2>
+        <form class="event-form" method="POST" action="/">
+            <label for="eventName" id="eventName-label">Event Name</label><br>
+                <input type="text" id="eventName" name="eventName" placeholder="Enter Event Name"/><br>
+                <label for="eventDate" id="eventDate-label">Date</label><br>
+                <input type="text" id="eventDate" name="eventDate" placeholder="Enter Date"/><br>
+                <label for="eventLoc" id="eventLoc-label">Location</label><br>
+                <input type="text" id="eventLoc" name="eventLoc" placeholder="Enter Location"/><br>
+                <label for="eventTime" id="eventTime-label">Time</label><br>
+                <input type="text" id="eventTime" name="eventTime" placeholder="Enter Time"/><br>
+                <label for="eventDesc" id="eventDesc-label">Description</label><br>
+                <textarea id="eventDesc" name="eventDesc" placeholder="Enter Description"></textarea><br>
+                <label for="eventReminder" id="eventReminder-label">Set Reminder</label><br>
+                <input type="text" id="eventReminder" name="eventReminder" placeholder="2 weeks out"/><br>
+                <button type="submit" name="submit" id="button">Submit!</button>
+                <img src="../images/trash.png" alt="trashcan" id="trash">
+        </form>
+    </div>
+    <script src="../assets/event-scheduler.js"></script>
+</body>
+</html>
