@@ -28,10 +28,10 @@ module.exports = function(app) {
             if(err) throw err;
             res.render('scheduler', {events: events});
         });
-        Events.findOne({ "cardNumber" : "card one" }, function(err, eventy) {
-            if(err) throw err;
-            console.log(eventy);
-        });
+        // Events.findOne({ "cardNumber" : "card one" }, function(err, eventy) {
+        //     if(err) throw err;
+        //     console.log(eventy);
+        // });
         // Events.find({"eventName"}[1], function(err, eventyName) {
         //     if(err) throw err;
         //     console.log("event Name" + eventyName);

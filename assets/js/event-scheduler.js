@@ -2,6 +2,11 @@
 var toggleOverlay = document.getElementsByClassName('card-button');
 var returnArr = document.getElementById('return');
 //var formOverlay = document.querySelector('event-form');
+returnArr.addEventListener('click', function() {
+  var formOverlay = document.getElementsByClassName('event-form-overlay');
+  formOverlay[0].style.display = "none";
+  console.log("clicked");
+});
 
 // The following toggles each cards overlay, we have to set up an event handler
 // for each card so that we can distinguish later which card to update/remove
@@ -125,12 +130,3 @@ toggleOverlay[9].addEventListener('click', function() {
     document.getElementById('event-title').innerText = document.getElementsByClassName('card-event-name')[9].innerText;
   }
 });
-
-returnArr.addEventListener('click', function() {
-  var formOverlay = document.getElementsByClassName('event-form-overlay');
-  formOverlay[0].style.display = "none";
-});
-
-
-    
-  

@@ -32,7 +32,9 @@ app.use('/assets', express.static('assets'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(expressSession ({
-    secret: 'vanille latte'
+    secret: 'vanille latte',
+    resave: true,
+    saveUninitialized: true
 }));
 app.use(flash());
 
@@ -52,3 +54,8 @@ app.post('/event/create', createController);
 app.post('event/update', updateController);
 
 app.listen(4200);
+
+// for debugging
+process.on('unhandledRejection', (reason, p) => {
+    console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+});
