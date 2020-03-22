@@ -12,6 +12,7 @@ const homeController = require('./controllers/homeController');
 const logoutController = require('./controllers/logoutController');
 const createController = require('./controllers/createController');
 const updateController = require('./controllers/updateController');
+const deleteController = require('./controllers/deleteController');
 
 // models
 const Event = require('./models/Event');
@@ -52,10 +53,6 @@ app.post('/users/register', redirectIfAuthMiddleware, registerController);
 app.post('/users/login', redirectIfAuthMiddleware, loginController);
 app.post('/event/create', createController);
 app.post('event/update', updateController);
+app.post('/event/delete', deleteController);
 
 app.listen(4200);
-
-// for debugging
-process.on('unhandledRejection', (reason, p) => {
-    console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
-});

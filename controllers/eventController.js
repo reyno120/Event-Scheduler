@@ -39,8 +39,6 @@ module.exports = function(app) {
     });
 
     app.post('/', urlencodedParser, function(req, res) {
-
-
         var newEvent = new Events(req.body);
         console.log(req.body);
         newEvent.save();

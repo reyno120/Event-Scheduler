@@ -1,12 +1,13 @@
 //var cardOne = document.getElementById('card-one-button2');
 var toggleOverlay = document.getElementsByClassName('card-button');
 var returnArr = document.getElementById('return');
+var trash = document.getElementById('trash');
 //var formOverlay = document.querySelector('event-form');
 returnArr.addEventListener('click', function() {
   var formOverlay = document.getElementsByClassName('event-form-overlay');
   formOverlay[0].style.display = "none";
-  console.log("clicked");
 });
+
 
 // The following toggles each cards overlay, we have to set up an event handler
 // for each card so that we can distinguish later which card to update/remove
@@ -20,6 +21,16 @@ toggleOverlay[0].addEventListener('click', function() {   // adds event listener
     document.getElementById('form-title').innerText = "Edit details for:";
     document.getElementById('event-title').innerText = document.getElementsByClassName('card-event-name')[0].innerText;
   }
+  trash.addEventListener('click', function() {
+    var eventName = document.getElementsByClassName('card-event-name')[0].innerText;
+    $.post("/event/delete", 
+    {
+      eventName: eventName
+    },
+    function(data) {
+      location.reload();
+    });
+  });
 });
 
 toggleOverlay[1].addEventListener('click', function() {
@@ -32,6 +43,16 @@ toggleOverlay[1].addEventListener('click', function() {
     document.getElementById('form-title').innerText = "Edit details for:";
     document.getElementById('event-title').innerText = document.getElementsByClassName('card-event-name')[1].innerText;
   }
+  trash.addEventListener('click', function() {
+    var eventName = document.getElementsByClassName('card-event-name')[1].innerText;
+    $.post("/event/delete", 
+    {
+      eventName: eventName
+    },
+    function(data) {
+      location.reload();
+    });
+  });
 });
 
 toggleOverlay[2].addEventListener('click', function() {
@@ -44,6 +65,16 @@ toggleOverlay[2].addEventListener('click', function() {
     document.getElementById('form-title').innerText = "Edit details for:";
     document.getElementById('event-title').innerText = document.getElementsByClassName('card-event-name')[2].innerText;
   }
+  trash.addEventListener('click', function() {
+    var eventName = document.getElementsByClassName('card-event-name')[2].innerText;
+    $.post("/event/delete", 
+    {
+      eventName: eventName
+    },
+    function(data) {
+      location.reload();
+    });
+  });
 });
 
 toggleOverlay[3].addEventListener('click', function() {
@@ -56,6 +87,16 @@ toggleOverlay[3].addEventListener('click', function() {
     document.getElementById('form-title').innerText = "Edit details for:";
     document.getElementById('event-title').innerText = document.getElementsByClassName('card-event-name')[3].innerText;
   }
+  trash.addEventListener('click', function() {
+    var eventName = document.getElementsByClassName('card-event-name')[3].innerText;
+    $.post("/event/delete", 
+    {
+      eventName: eventName
+    },
+    function(data) {
+      location.reload();
+    });
+  });
 });
 
 toggleOverlay[4].addEventListener('click', function() {
@@ -68,6 +109,16 @@ toggleOverlay[4].addEventListener('click', function() {
     document.getElementById('form-title').innerText = "Edit details for:";
     document.getElementById('event-title').innerText = document.getElementsByClassName('card-event-name')[4].innerText;
   }
+  trash.addEventListener('click', function() {
+    var eventName = document.getElementsByClassName('card-event-name')[4].innerText;
+    $.post("/event/delete", 
+    {
+      eventName: eventName
+    },
+    function(data) {
+      location.reload();
+    });
+  });
 });
 
 toggleOverlay[5].addEventListener('click', function() {
@@ -80,6 +131,16 @@ toggleOverlay[5].addEventListener('click', function() {
     document.getElementById('form-title').innerText = "Edit details for:";
     document.getElementById('event-title').innerText = document.getElementsByClassName('card-event-name')[5].innerText;
   }
+  trash.addEventListener('click', function() {
+    var eventName = document.getElementsByClassName('card-event-name')[5].innerText;
+    $.post("/event/delete", 
+    {
+      eventName: eventName
+    },
+    function(data) {
+      location.reload();
+    });
+  });
 });
 
 toggleOverlay[6].addEventListener('click', function() {
@@ -92,6 +153,16 @@ toggleOverlay[6].addEventListener('click', function() {
     document.getElementById('form-title').innerText = "Edit details for:";
     document.getElementById('event-title').innerText = document.getElementsByClassName('card-event-name')[6].innerText;
   }
+  trash.addEventListener('click', function() {
+    var eventName = document.getElementsByClassName('card-event-name')[6].innerText;
+    $.post("/event/delete", 
+    {
+      eventName: eventName
+    },
+    function(data) {
+      location.reload();
+    });
+  });
 });
 
 toggleOverlay[7].addEventListener('click', function() {
@@ -104,6 +175,16 @@ toggleOverlay[7].addEventListener('click', function() {
     document.getElementById('form-title').innerText = "Edit details for:";
     document.getElementById('event-title').innerText = document.getElementsByClassName('card-event-name')[7].innerText;
   }
+  trash.addEventListener('click', function() {
+    var eventName = document.getElementsByClassName('card-event-name')[7].innerText;
+    $.post("/event/delete", 
+    {
+      eventName: eventName
+    },
+    function(data) {
+      location.reload();
+    });
+  });
 });
 
 toggleOverlay[8].addEventListener('click', function() {
@@ -116,6 +197,16 @@ toggleOverlay[8].addEventListener('click', function() {
     document.getElementById('form-title').innerText = "Edit details for:";
     document.getElementById('event-title').innerText = document.getElementsByClassName('card-event-name')[8].innerText;
   }
+  trash.addEventListener('click', function() {
+    var eventName = document.getElementsByClassName('card-event-name')[8].innerText;
+    $.post("/event/delete", 
+    {
+      eventName: eventName
+    },
+    function(data) {
+      location.reload();
+    });
+  });
 });
 
 toggleOverlay[9].addEventListener('click', function() {
@@ -124,9 +215,18 @@ toggleOverlay[9].addEventListener('click', function() {
   document.getElementById('cardNumber').value = "card ten";
   document.getElementById('form-title').innerText = "Create a new event!";
   document.getElementById('event-title').innerText = "";          // resets fields
-  console.log("testing");
   if(document.getElementsByClassName('card-event-name')[9].innerText != "") { //displays event name on form overlay if there is an event to display
     document.getElementById('form-title').innerText = "Edit details for:";
     document.getElementById('event-title').innerText = document.getElementsByClassName('card-event-name')[9].innerText;
   }
+  trash.addEventListener('click', function() {
+    var eventName = document.getElementsByClassName('card-event-name')[9].innerText;
+    $.post("/event/delete", 
+    {
+      eventName: eventName
+    },
+    function(data) {
+      location.reload();
+    });
+  });
 });
