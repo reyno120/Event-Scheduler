@@ -78,7 +78,7 @@ module.exports = (req, res) => {
         eventTime: req.body.eventTime,
         eventDesc: req.body.eventDesc,
         eventReminder: req.body.eventReminder,
-        cardNumber: req.body.cardNumber,
+        cardNumber: req.body.cardNumber,        // fix
         userid: req.session.userId 
         }
     },
