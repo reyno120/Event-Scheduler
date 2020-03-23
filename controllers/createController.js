@@ -68,7 +68,7 @@ const Event = require('../models/Event');
 
 module.exports = (req, res) => {
     Event.updateOne({
-        cardNumber: req.body.cardNumber,
+        eventName: req.body.oldEventName,
         userid: req.session.userId 
     },
         {$set: {
@@ -78,7 +78,7 @@ module.exports = (req, res) => {
         eventTime: req.body.eventTime,
         eventDesc: req.body.eventDesc,
         eventReminder: req.body.eventReminder,
-        cardNumber: req.body.cardNumber,        // fix
+        oldEventName: req.body.oldEventName,
         userid: req.session.userId 
         }
     },

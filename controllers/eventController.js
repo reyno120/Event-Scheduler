@@ -13,7 +13,8 @@ var eventSchema = new mongoose.Schema({
     "eventTime": { type: String },
     "eventLoc": { type: String },
     "eventReminder": { type: String },
-    "cardNumber": { type: String }
+    "oldEventName": { type: String }
+    //"cardNumber": { type: String }
 });
 
 var Events = mongoose.model('Events', eventSchema);
@@ -28,14 +29,6 @@ module.exports = function(app) {
             if(err) throw err;
             res.render('scheduler', {events: events});
         });
-        // Events.findOne({ "cardNumber" : "card one" }, function(err, eventy) {
-        //     if(err) throw err;
-        //     console.log(eventy);
-        // });
-        // Events.find({"eventName"}[1], function(err, eventyName) {
-        //     if(err) throw err;
-        //     console.log("event Name" + eventyName);
-        // });
     });
 
     app.post('/', urlencodedParser, function(req, res) {
@@ -44,11 +37,4 @@ module.exports = function(app) {
         newEvent.save();
         res.json(newEvent);
     });
-
-    /*app.delete('/:event', function(req, res) {
-        Events.find({event: req.params.item.replace(/\-/g, " ")}).remove(function(err, data) {
-            if(err) throw err;
-            res.json(data);
-        });
-    });*/
 };
