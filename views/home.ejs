@@ -182,15 +182,24 @@
             <label for="eventName" id="eventName-label">Event Name</label><br>
                 <input type="text" id="eventName" name="eventName" placeholder="Enter Event Name"/><br>
                 <label for="eventDate" id="eventDate-label">Date</label><br>
-                <input type="text" id="eventDate" name="eventDate" placeholder="Enter Date"/><br>
+                <input type="date" id="eventDate" name="eventDate" placeholder="Enter Date"/><br>
                 <label for="eventLoc" id="eventLoc-label">Location</label><br>
                 <input type="text" id="eventLoc" name="eventLoc" placeholder="Enter Location"/><br>
                 <label for="eventTime" id="eventTime-label">Time</label><br>
-                <input type="text" id="eventTime" name="eventTime" placeholder="Enter Time"/><br>
+                <input type="time" id="eventTime" name="eventTime" placeholder="Enter Time"/><br>
                 <label for="eventDesc" id="eventDesc-label">Description</label><br>
                 <textarea id="eventDesc" name="eventDesc" placeholder="Enter Description"></textarea><br>
                 <label for="eventReminder" id="eventReminder-label">Set Reminder</label><br>
-                <input type="text" id="eventReminder" name="eventReminder" placeholder="2 weeks out"/><br>
+                <select id="reminderList">
+                    <option value="1">At time of event</option>
+                    <option value="2">1 hour before</option>
+                    <option value="3">2 hours before</option>
+                    <option value="4">1 day before</option>
+                    <option value="5">2 days before</option>
+                    <option value="6">1 week before</option>
+                    <option value="7">2 weeks before</option>
+                </select>
+                <!--<input type="text" id="eventReminder" name="eventReminder" placeholder="2 weeks out"/><br>-->
                 <button type="submit" name="submit" id="button">Submit!</button>
                 <img src="../assets/images/trash.png" alt="trashcan" id="trash">
                 <input type="text" id="cardNumber" name="oldEventName" value="">

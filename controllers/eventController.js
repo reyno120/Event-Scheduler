@@ -9,7 +9,7 @@ mongoose.connect('mongodb+srv://jmreynolds:jmreynolds@mycluster-pjizw.mongodb.ne
 var eventSchema = new mongoose.Schema({ 
     "eventName": { type: String },
     "eventDesc": { type: String },
-    "eventDate": { type: String },
+    "eventDate": { type: Date },
     "eventTime": { type: String },
     "eventLoc": { type: String },
     "eventReminder": { type: String },

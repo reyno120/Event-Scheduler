@@ -260,17 +260,19 @@ button {
     grid-row-end: 6;
     position: relative;
     top: 40px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: 7em;
 }
-#eventReminder {
+#reminderList {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 6;
     grid-row-end: 7;
     width: 15em;
-    margin-left: auto;
-    margin-right: auto;
+    height: 4em;
+    font-size: 1rem;
+    margin-left: 10em;
+    border: solid 2px rgb(198, 63, 213);
+    border-radius: 10px;
     position: relative;
     top: 40px;
 }
@@ -280,7 +282,7 @@ button {
     background-color: rgb(123, 63, 213);
     border: none;
     border-radius: 50px;
-    margin-left: 85%;
+    right: 2em;
     color: white;
     font-size: 1.7rem;
     position: relative;
@@ -290,9 +292,9 @@ button {
 }
 #trash {
     width: 50px;
-    margin-left: 80%;
     position: relative;
     bottom: 20px;
+    left: 60em;
     cursor: pointer;
 }
 #cardNumber {
@@ -355,24 +357,11 @@ button {
     height: 36px;
     border-style: solid;
     cursor: pointer;
-
 }
 .card-two {
     border: solid gray 1px;
     box-shadow: 6px 6px 5px gray;
 }
-/*.card-two button {
-    margin-left: 22%;
-    margin-top: 30%;
-    background-color: rgb(123, 63, 213);
-    color: white;
-    font-size: 1.2rem;
-    border-radius: 60px;
-    width: 130px;
-    height: 36px;
-    border-style: solid;
-
-}*/
 .card-three {
     border: solid gray 1px;
     box-shadow: 6px 6px 5px gray;
