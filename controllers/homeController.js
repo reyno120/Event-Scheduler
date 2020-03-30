@@ -1,14 +1,23 @@
 const Events = require('../models/Event');
 const schedule = require('node-schedule');
-
-// var date = new Date(Date.now());
-// var date = new Date('March 24, 2020 13:52:00');
+const nodemailer = require('nodemailer');
 
 module.exports = (req, res) => {
     Events.find({userid: req.session.userId}, (error, events) => {
 
+        let transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'eventscheduler82@gmail.com',
+                pass: 'EventScheduler@82'
+            }
+        });
+
+        var jobs = [0];
+
         // converting to 12-hour time and adding AM/PM
         for(var i = 0; events[i] != null; i++) {
+            var fullTime = events[i].eventTime;
             var eTime = events[i].eventTime;
             var hour = parseInt(eTime);
 
@@ -32,11 +41,29 @@ module.exports = (req, res) => {
             }
 
             var jobDate = new Date();
-            jobDate.setTime(eTime);
-            jobDate.setDate(events[i].eventDate);
-            var j = schedule.scheduleJob(jobDate, function() {
-                console.log("test-YES");
+            //--------------constructing-date--------------------//
+            eDate = events[i].eventDate;
+            //set date
+            jobDate.setUTCFullYear(eDate.substring(0, 4));
+            jobDate.setUTCMonth(parseInt(eDate.substring(5, 7)) - 1);
+            jobDate.setUTCDate(eDate.substring(8, 10));
+            // set time
+            jobDate.setUTCHours(parseInt(fullTime.substring(0, 2)) + 4);
+            jobDate.setUTCMinutes(fullTime.substring(3, 5))
             
+            console.log(jobDate);
+            //--------------------------------------------------//
+            let mailOptions = {
+                from: 'eventscheduler82@gmail.com',
+                to: 'jmreynolds03@gmail.com',    // needs to be changed once registration w/ email is complete
+                subject: 'Reminder for ' + events[i].eventName + '.',
+                text: 'This is a reminder for ' + events[i].eventName + ' on ' + events[i].eventDate + ' at ' + events[i].eventTime + '. Make sure to arrive at ' + events[i].eventLoc + ' on time!'
+            };
+            jobs[i] = schedule.scheduleJob(jobDate, function() {
+                transporter.sendMail(mailOptions, function(err, data) {
+                    if (err) throw err;
+                });
+                console.log("email sent!");
             });
         }
 
