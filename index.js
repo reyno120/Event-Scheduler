@@ -56,5 +56,3 @@ app.post('event/update', updateController);
 app.post('/event/delete', deleteController);
 
 app.listen(4200);
-
-//eventscheduler82@gmail.com

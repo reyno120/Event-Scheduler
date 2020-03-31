@@ -180,15 +180,15 @@
         <h2 id="event-title"></h2>
         <form class="event-form" method="POST" action="/event/create">
             <label for="eventName" id="eventName-label">Event Name</label><br>
-                <input type="text" id="eventName" name="eventName" placeholder="Enter Event Name"/><br>
+                <input type="text" id="eventName" name="eventName" placeholder="Enter Event Name" required/><br>
                 <label for="eventDate" id="eventDate-label">Date</label><br>
-                <input type="date" id="eventDate" name="eventDate" placeholder="Enter Date"/><br>
+                <input type="date" id="eventDate" name="eventDate" placeholder="Enter Date" required/><br>
                 <label for="eventLoc" id="eventLoc-label">Location</label><br>
-                <input type="text" id="eventLoc" name="eventLoc" placeholder="Enter Location"/><br>
+                <input type="text" id="eventLoc" name="eventLoc" placeholder="Enter Location" required/><br>
                 <label for="eventTime" id="eventTime-label">Time</label><br>
-                <input type="time" id="eventTime" name="eventTime" placeholder="Enter Time"/><br>
+                <input type="time" id="eventTime" name="eventTime" placeholder="Enter Time" required/><br>
                 <label for="eventDesc" id="eventDesc-label">Description</label><br>
-                <textarea id="eventDesc" name="eventDesc" placeholder="Enter Description"></textarea><br>
+                <textarea id="eventDesc" name="eventDesc" placeholder="Enter Description" required></textarea><br>
                 <label for="eventReminder" id="eventReminder-label">Set Reminder</label><br>
                 <select id="reminderList">
                     <option value="1">At time of event</option>
