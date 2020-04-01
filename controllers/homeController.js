@@ -54,13 +54,13 @@ module.exports = (req, res) => {
                 jobDate.setUTCHours(parseInt(fullTime.substring(0, 2)) + 4);
                 jobDate.setUTCMinutes(fullTime.substring(3, 5))
                 
-                console.log(jobDate);
-                console.log(events[i].eventName);
+                // console.log(jobDate);
+                // console.log(events[i].eventName);
                 //--------------------------------------------------//
 
                 let mailOptions = {
                     from: 'eventscheduler82@gmail.com',
-                    to: userEmail,    // needs to be changed once registration w/ email is complete
+                    to: userEmail,
                     subject: 'Reminder for ' + events[i].eventName + '.',
                     text: 'This is a reminder for ' + events[i].eventName + ' on ' + events[i].eventDate + ' at ' + events[i].eventTime + '. Make sure to arrive at ' + events[i].eventLoc + ' on time!'
                 };

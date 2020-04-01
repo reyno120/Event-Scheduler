@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="../assets/css/loginStyle.css" rel="stylesheet" type="text/css">
     <title>Login/Register</title>
 </head>
 <body>
-    <h1>Login</h1> 
-    <form action="/users/login" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" >
-        <button type="submit">Submit</button>
-    </form>
-    <h1>Register</h1>
-    <form action="/users/register" method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="register_username" name="username">
-        <label for="password">Password:</label>
-        <input type="password" id="register_password" name="password" >
-        <label for="email">Email:</label>
-        <input type="email" id="register_email" name="email" >
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <h1>LOGIN</h1> 
+        <form action="/users/login" method="POST">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="eventscheduler82">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="*********">
+            <button type="submit" id="loginButton">Login!</button>
+        </form>
+        <h1>REGISTER</h1>
+        <form action="/users/register" method="POST">
+            <label for="username">Username</label>
+            <input type="text" id="register_username" name="username"  placeholder="eventscheduler82">
+            <label for="password">Password</label>
+            <input type="password" id="register_password" name="password" placeholder="*********">
+            <label for="email" id="email-label">Email</label>
+            <input type="email" id="register_email" name="email"  placeholder="eventscheduler82@gmail.com">
+            <button type="submit" id="registerButton">Register!</button>
+        </form>
+    </div>
     <% if(errors != null && errors.length > 0) { %>
     <ul>
         <% for (var i = 0; i < errors.length; i++) { %>
