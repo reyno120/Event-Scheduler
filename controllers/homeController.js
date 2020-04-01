@@ -56,6 +56,7 @@ module.exports = (req, res) => {
                 
                 // console.log(jobDate);
                 // console.log(events[i].eventName);
+                console.log(events[i].eventReminder);
                 //--------------------------------------------------//
 
                 let mailOptions = {
