@@ -45,18 +45,73 @@ module.exports = (req, res) => {
 
                 var jobDate = new Date();
                 //--------------constructing-date--------------------//
-                eDate = events[i].eventDate;
-                //set date
-                jobDate.setUTCFullYear(eDate.substring(0, 4));
-                jobDate.setUTCMonth(parseInt(eDate.substring(5, 7)) - 1);
-                jobDate.setUTCDate(eDate.substring(8, 10));
-                // set time
-                jobDate.setUTCHours(parseInt(fullTime.substring(0, 2)) + 4);
-                jobDate.setUTCMinutes(fullTime.substring(3, 5))
-                
+                var eDate = events[i].eventDate;
+                var reminder = events[i].eventReminder;
+                switch(reminder) {
+                    case "At time of event":
+                        //set date
+                        jobDate.setUTCFullYear(eDate.substring(0, 4));
+                        jobDate.setUTCMonth(parseInt(eDate.substring(5, 7)) - 1);
+                        jobDate.setUTCDate(eDate.substring(8, 10));
+                        // set time
+                        jobDate.setUTCHours(parseInt(fullTime.substring(0, 2)) + 4);
+                        jobDate.setUTCMinutes(fullTime.substring(3, 5));
+                        break;
+                    case "1 hour before":
+                        //set date
+                        jobDate.setUTCFullYear(eDate.substring(0, 4));
+                        jobDate.setUTCMonth(parseInt(eDate.substring(5, 7)) - 1);
+                        jobDate.setUTCDate(eDate.substring(8, 10));
+                        // set time
+                        jobDate.setUTCHours(parseInt(fullTime.substring(0, 2)) + 3);
+                        jobDate.setUTCMinutes(fullTime.substring(3, 5));
+                        break;
+                    case "2 hours before":
+                        //set date
+                        jobDate.setUTCFullYear(eDate.substring(0, 4));
+                        jobDate.setUTCMonth(parseInt(eDate.substring(5, 7)) - 1);
+                        jobDate.setUTCDate(eDate.substring(8, 10));
+                        // set time
+                        jobDate.setUTCHours(parseInt(fullTime.substring(0, 2)) + 2);
+                        jobDate.setUTCMinutes(fullTime.substring(3, 5));
+                        break;
+                    case "1 day before":
+                        //set date
+                        jobDate.setUTCFullYear(eDate.substring(0, 4));
+                        jobDate.setUTCMonth(parseInt(eDate.substring(5, 7)) - 1);
+                        jobDate.setUTCDate(parseInt(eDate.substring(8, 10)) - 1);
+                        // set time
+                        jobDate.setUTCHours(parseInt(fullTime.substring(0, 2)) + 4);
+                        jobDate.setUTCMinutes(fullTime.substring(3, 5));
+                        break;
+                    case "2 days before":
+                        jobDate.setUTCFullYear(eDate.substring(0, 4));
+                        jobDate.setUTCMonth(parseInt(eDate.substring(5, 7)) - 1);
+                        jobDate.setUTCDate(parseInt(eDate.substring(8, 10)) - 2); 
+                        // set time
+                        jobDate.setUTCHours(parseInt(fullTime.substring(0, 2)) + 4);
+                        jobDate.setUTCMinutes(fullTime.substring(3, 5));
+                        break;
+                    case "1 week before":
+                        jobDate.setUTCFullYear(eDate.substring(0, 4));
+                        jobDate.setUTCMonth(parseInt(eDate.substring(5, 7)) - 1);
+                        jobDate.setUTCDate(parseInt(eDate.substring(8, 10)) - 7);
+                        // set time
+                        jobDate.setUTCHours(parseInt(fullTime.substring(0, 2)) + 4);
+                        jobDate.setUTCMinutes(fullTime.substring(3, 5));
+                        break;
+                    case "2 weeks before":
+                        jobDate.setUTCFullYear(eDate.substring(0, 4));
+                        jobDate.setUTCMonth(parseInt(eDate.substring(5, 7)) - 1);
+                        jobDate.setUTCDate(parseInt(eDate.substring(8, 10)) - 14);
+                        // set time
+                        jobDate.setUTCHours(parseInt(fullTime.substring(0, 2)) + 4);
+                        jobDate.setUTCMinutes(fullTime.substring(3, 5));
+                        break;
+                }
                 // console.log(jobDate);
+                // console.log(reminder);
                 // console.log(events[i].eventName);
-                console.log(events[i].eventReminder);
                 //--------------------------------------------------//
 
                 let mailOptions = {
