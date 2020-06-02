@@ -1,6 +1,6 @@
 // modules
 const express = require('express');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 // const mongoose = require('mongoose');
 // const expressSession = require('express-session');
 // const flash = require('connect-flash');
@@ -32,8 +32,8 @@ const bodyParser = require('body-parser');
 const app = express();
 // app.set('view engine', 'ejs');
 // app.use('/assets', express.static('assets'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.json());
+// app.use(bodyParser.urlencoded({extended:true}));
 // app.use(expressSession ({
 //     secret: 'vanille latte',
 //     resave: true,
@@ -44,7 +44,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 // HTTP requests handlers
-app.get('/', authMiddleware, homeController);
+// app.get('/', authMiddleware, homeController);
+const testController = require('./controllers/testController');
+app.get('/test', testController);
 // app.get('/auth/login', redirectIfAuthMiddleware, (req, res) => {
 //     res.render('login', {
 //         errors: flash('validationErrors')
