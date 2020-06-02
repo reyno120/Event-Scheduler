@@ -4,14 +4,15 @@
   "description": "A simple event scheduler",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "node server.js",
+    "dev": "concurrently \"nodemon index.js\" \"npm start --prefix client\""
   },
   "author": "Jacob Reynolds",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^4.0.0",
     "body-parser": "^1.19.0",
+    "concurrently": "^5.2.0",
     "connect-flash": "^0.1.1",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
