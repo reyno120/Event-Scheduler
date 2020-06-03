@@ -1,7 +1,7 @@
 // modules
 const express = require('express');
-// const bodyParser = require('body-parser');
-// const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 // const expressSession = require('express-session');
 // const flash = require('connect-flash');
 // const cors = require('cors');
@@ -16,7 +16,7 @@ const express = require('express');
 // const deleteController = require('./controllers/deleteController');
 
 // models
-// const Event = require('./models/Event');
+const Event = require('./models/Event');
 // const User = require('./models/User');
 
 // custom middleware
@@ -25,15 +25,15 @@ const express = require('express');
 
 
 // Connection to database
-// const connection = require('./config/keys');
-// mongoose.connect(connection.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
+const connection = require('./config/keys');
+mongoose.connect(connection.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 // middleware
 const app = express();
 // app.set('view engine', 'ejs');
 // app.use('/assets', express.static('assets'));
-app.use(express.json());
-// app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
 // app.use(expressSession ({
 //     secret: 'vanille latte',
 //     resave: true,

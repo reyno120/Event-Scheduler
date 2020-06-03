@@ -1,3 +1,8 @@
+const Events = require('../models/Event');
+
 module.exports = (req, res) => {
-    res.json({expresss: "test"});
+    Events.find({eventName: "test event 1"}, (error, events) => {
+        if(error) throw error;
+        res.json({events: events});
+    });
 }

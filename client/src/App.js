@@ -4,13 +4,13 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: null
+      event: {}
     }
   }
 
   componentDidMount() {
     this.callBackend()
-      .then(res => this.setState({ data: res.expresss }));
+      .then(res => this.setState({ event: res.events.eventName }));
   }
 
   callBackend = async () => {
@@ -21,8 +21,13 @@ class App extends Component {
   }
 
   render() { 
-    return (  
-      <h1>{this.state.data}</h1>
+    return (
+    <div>
+      <h1>test</h1>
+      {this.state.event.map((eventDetail) => {
+        return <h1>{eventDetail.eventName}</h1>
+      })}
+    </div>
     );
   }
 }
