@@ -1,28 +1,21 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import Navbar from './components/Navbar';
+import AllCards from './components/AllCards';
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      userEvents: []
-    }
-  }
-
-  componentDidMount() {
-    axios.get('/home')
-      .then(res => {
-        this.setState({userEvents: res.data.userEvents});
-        console.log(this.state.userEvents);
-      });
+    this.state = {}
   }
 
   render() { 
     return (
     <div>
-      {this.state.userEvents.map((details, index) => (
+      <Navbar></Navbar>
+      <AllCards></AllCards>
+      {/* {this.state.userEvents.map((details, index) => (
         <li key={index}>{details.eventName}, {details.eventLoc}</li>
-      ))}
+      ))} */}
     </div>
     );
   }
