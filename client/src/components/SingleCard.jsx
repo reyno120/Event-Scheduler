@@ -3,41 +3,34 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button'
-import DeleteIcon from '@material-ui/icons/Delete'
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import moment from 'moment';
 
 class SingleCard extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state={}
-    // }
     render() { 
 
-        //--------Constructing date display---------------
+        // Constructing date display
         var fullTime = this.props.eventTime;
-        var eTime = this.props.eventTime;
-        var hour = parseInt(fullTime);
+        var hour = parseInt(this.props.eventTime);
 
         if(hour >= 13) {    //pm
             hour -= 12;
             hour = hour.toString();
-            eTime = hour + eTime.substring(2) + " PM";
-            fullTime = eTime;
+            fullTime = hour + fullTime.substring(2) + " PM";
         }
         else if(hour === 12) {   // noon
-            fullTime = eTime + " PM";
+            fullTime = fullTime + " PM";
         }
         else if(hour === 0) {    // midnight
             hour += 12;
             hour = hour.toString();
-            eTime = hour + eTime.substring(2) + " AM";
-            fullTime = eTime;
+            fullTime = hour + fullTime.substring(2) + " AM";
         }
         else {  //am
-            fullTime = eTime + " AM";
+            fullTime = fullTime + " AM";
         }
-        //---------------------------------
 
         // Display a prettier date using moment.js
         const eventDate = moment(this.props.eventDate).format('MMMM Do YYYY');
@@ -46,7 +39,7 @@ class SingleCard extends Component {
             <div>
                 <Card>
                     <CardContent>
-                        <Typography style={{fontSize: '2.5rem', textAlign: 'center', marginBottom: '.5em'}}>
+                        <Typography style={{fontSize: '2.5rem', textAlign: 'center', marginBottom: '.5em', lineHeight: '45px'}}>
                             {this.props.eventName}
                         </Typography>
                         <Typography style={{fontSize: '1.2rem', textAlign: 'center', marginBottom: '.3em', textDecoration: 'underline'}}>
@@ -62,8 +55,9 @@ class SingleCard extends Component {
                     <CardActions>
                         <Button variant="contained" style={{marginLeft: '6em'}}>Details</Button>
                     </CardActions>
-                    <CardActions>
-                        <DeleteIcon style={{cursor: 'pointer', marginLeft: '10em'}}></DeleteIcon>
+                    <CardActions disableSpacing>
+                        <InfoOutlinedIcon style={{cursor: 'pointer'}}></InfoOutlinedIcon>
+                        <DeleteIcon style={{cursor: 'pointer', marginLeft: '9em'}}></DeleteIcon>
                     </CardActions>
                 </Card>
             </div>  

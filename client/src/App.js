@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import Navbar from './components/Navbar';
 import AllCards from './components/AllCards';
+import images from './images/imagesDatabase';
 
 class App extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
+
+  selectRandomImage() {
+    var randomNumber = Math.floor(Math.random() * images.length);
+    var randomImage = images[randomNumber];
+    return randomImage.image;
   }
 
   render() { 
     return (
-    <div>
+    <div style={{backgroundImage: "url(" + this.selectRandomImage() + ")", height: '100vh', backgroundSize: 'cover'}}>
       <Navbar></Navbar>
       <AllCards></AllCards>
-      {/* {this.state.userEvents.map((details, index) => (
-        <li key={index}>{details.eventName}, {details.eventLoc}</li>
-      ))} */}
     </div>
     );
   }
