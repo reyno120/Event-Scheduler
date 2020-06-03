@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 // controllers
 // const registerController = require('./controllers/registerController');
 // const loginController = require('./controllers/loginController');
-// const homeController = require('./controllers/homeController');
+const homeController = require('./controllers/homeController');
 // const logoutController = require('./controllers/logoutController');
 // const createController = require('./controllers/createController');
 // const updateController = require('./controllers/updateController');
@@ -45,8 +45,9 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 // HTTP requests handlers
 // app.get('/', authMiddleware, homeController);
-const testController = require('./controllers/testController');
-app.get('/test', testController);
+// const testController = require('./controllers/testController');
+// app.get('/test', testController);
+app.get('/home', homeController);
 // app.get('/auth/login', redirectIfAuthMiddleware, (req, res) => {
 //     res.render('login', {
 //         errors: flash('validationErrors')

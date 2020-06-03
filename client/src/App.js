@@ -1,32 +1,28 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      event: {}
+      userEvents: []
     }
   }
 
   componentDidMount() {
-    this.callBackend()
-      .then(res => this.setState({ event: res.events.eventName }));
-  }
-
-  callBackend = async () => {
-    const res = await fetch('/test');
-    const body = await res.json();
-
-    return body;
+    axios.get('/home')
+      .then(res => {
+        this.setState({userEvents: res.data.userEvents});
+        console.log(this.state.userEvents);
+      });
   }
 
   render() { 
     return (
     <div>
-      <h1>test</h1>
-      {this.state.event.map((eventDetail) => {
-        return <h1>{eventDetail.eventName}</h1>
-      })}
+      {this.state.userEvents.map((details, index) => (
+        <li key={index}>{details.eventName}, {details.eventLoc}</li>
+      ))}
     </div>
     );
   }
