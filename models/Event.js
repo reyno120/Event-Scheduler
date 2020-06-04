@@ -7,7 +7,6 @@ const eventSchema = new mongoose.Schema({
     eventTime: { type: String },
     eventLoc: { type: String },
     eventReminder: { type: String },
-    cardNumber: { type: String },
     userid: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

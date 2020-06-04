@@ -8,7 +8,9 @@ class Navbar extends Component {
 
     render() { 
         const style = {
-            background: 'linear-gradient(90deg, rgba(167,0,255,1) 0%, rgba(206,0,143,1) 66%, rgba(224,0,0,1) 100%, rgba(121,9,94,1) 100%)',
+            // background: 'linear-gradient(90deg, rgba(167,0,255,1) 0%, rgba(206,0,143,1) 66%, rgba(224,0,0,1) 100%, rgba(121,9,94,1) 100%)',
+            backgroundColor: 'background: linear-gradient(90deg, rgba(194,194,194,1) 0%, rgba(59,59,59,1) 100%, rgba(116,116,116,1) 100%)',
+            color: 'white' 
         };
 
         return (  

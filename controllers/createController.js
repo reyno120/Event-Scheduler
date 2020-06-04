@@ -2,7 +2,6 @@ const Event = require('../models/Event');
 
 module.exports = (req, res) => {
     Event.updateOne({
-        eventName: req.body.oldEventName,
         userid: req.session.userId 
     },
         {$set: {
@@ -20,6 +19,6 @@ module.exports = (req, res) => {
         upsert: true
     },
     function(err, event) {
-        return res.redirect('/');
+        console.log("Event Created!");
     });
 }

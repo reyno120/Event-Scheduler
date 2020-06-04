@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import SingleCard from './SingleCard';
+import SingleCardEmpty from './SingleCardEmpty';
 import Grid from '@material-ui/core/Grid';
 
 class AllCards extends Component {
     constructor(props) {
         super(props)
         this.state = {
-          userEvents: []
+          userEvents: [],
+          displaySetting: 'block'
         }
       }
 
@@ -15,9 +17,15 @@ class AllCards extends Component {
         axios.get('/home')
           .then(res => {
             this.setState({userEvents: res.data.userEvents});
-            console.log(this.state.userEvents[0]);
           });
       }
+
+    checkIfFull() {
+        if(this.state.userEvents.length < 10) {
+            return 'none';
+        }
+        return 'block';
+    }
 
     render() { 
         return (
@@ -31,26 +39,14 @@ class AllCards extends Component {
                                 eventDate={details.eventDate} 
                                 eventLoc={details.eventLoc}
                                 eventTime={details.eventTime}
+                                objectId={details._id}
                                 >
                             </SingleCard>
                         </Grid>
-                        // <li key={index}>{details.eventName}, {details.eventLoc}</li>
                     ))}
-                    {/* <Grid item xs={2} style={{margin: 'auto'}}>
-                        <SingleCard></SingleCard>
+                    <Grid item xs={2} style={{marginLeft: '2em', marginRight: '2em'}}>
+                        <SingleCardEmpty style={{display: this.checkIfFull}}></SingleCardEmpty>
                     </Grid>
-                    <Grid item xs={2} style={{margin: 'auto'}}>
-                        <SingleCard></SingleCard>
-                    </Grid>
-                    <Grid item xs={2} style={{margin: 'auto'}}>
-                        <SingleCard></SingleCard>
-                    </Grid>
-                    <Grid item xs={2} style={{margin: 'auto'}}>
-                        <SingleCard></SingleCard>
-                    </Grid>
-                    <Grid item xs={2} style={{margin: 'auto'}}>
-                        <SingleCard></SingleCard>
-                    </Grid> */}
                 </Grid>
             </div>  
         );
