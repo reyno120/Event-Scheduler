@@ -162,29 +162,29 @@ class SingleCard extends Component {
                         </form>
                     </DialogContent>
                 </Dialog>
-                    <Card>
-                        <CardContent>
-                            <Typography style={{fontSize: '2.5rem', textAlign: 'center', marginBottom: '.5em', lineHeight: '45px'}}>
-                                {this.props.eventName}
-                            </Typography>
-                            <Typography style={{fontSize: '1.2rem', textAlign: 'center', marginBottom: '.3em', textDecoration: 'underline'}}>
-                                {eventDate}
-                            </Typography>
-                            <Typography style={{textAlign: 'center'}}>
-                                {this.props.eventLoc}
-                            </Typography>
-                            <Typography style={{textAlign: 'center'}}>
-                                {fullTime}
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button variant="contained" style={{marginLeft: '4.5em'}} onClick={this.handleClickOpen}>Edit Details</Button>
-                        </CardActions>
-                        <CardActions disableSpacing>
-                            <InfoOutlinedIcon style={{cursor: 'pointer'}} onClick={this.handleClick}></InfoOutlinedIcon>
-                            <DeleteIcon style={{cursor: 'pointer', marginLeft: '9em'}}></DeleteIcon>
-                        </CardActions>
-                    </Card>
+                <Card>
+                    <CardContent>
+                        <Typography style={{fontSize: '2.5rem', textAlign: 'center', marginBottom: '.5em', lineHeight: '45px'}}>
+                            {this.props.eventName}
+                        </Typography>
+                        <Typography style={{fontSize: '1.2rem', textAlign: 'center', marginBottom: '.3em', textDecoration: 'underline'}}>
+                            {eventDate}
+                        </Typography>
+                        <Typography style={{textAlign: 'center'}}>
+                            {this.props.eventLoc}
+                        </Typography>
+                        <Typography style={{textAlign: 'center'}}>
+                            {fullTime}
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button variant="contained" style={{marginLeft: '4.5em'}} onClick={this.handleClickOpen}>Edit Details</Button>
+                    </CardActions>
+                    <CardActions disableSpacing>
+                        <InfoOutlinedIcon style={{cursor: 'pointer'}} onClick={this.handleClick}></InfoOutlinedIcon>
+                        <DeleteIcon style={{cursor: 'pointer', marginLeft: '9em'}}></DeleteIcon>
+                    </CardActions>
+                </Card>
             </div>  
         );
     }

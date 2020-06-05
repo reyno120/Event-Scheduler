@@ -3,6 +3,8 @@ import Navbar from './components/Navbar';
 import AllCards from './components/AllCards';
 import images from './images/imagesDatabase';
 import Card from '@material-ui/core/Card';
+import LoginRegister from './components/LoginRegister';
+
 
 class App extends Component {
 
@@ -16,6 +18,7 @@ class App extends Component {
     var randomImage = this.selectRandomImage(); 
     return (
     <div style={{backgroundImage: "url(" + randomImage.image + ")", height: '100vh', backgroundSize: 'cover'}}>
+      <LoginRegister></LoginRegister>
       <Navbar></Navbar>
       <AllCards></AllCards>
       <Card 

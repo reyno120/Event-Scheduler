@@ -8,7 +8,7 @@ const expressSession = require('express-session');
 
 // controllers
 // const registerController = require('./controllers/registerController');
-// const loginController = require('./controllers/loginController');
+const loginController = require('./controllers/loginController');
 const homeController = require('./controllers/homeController');
 // const logoutController = require('./controllers/logoutController');
 const createController = require('./controllers/createController');
@@ -17,11 +17,11 @@ const updateController = require('./controllers/updateController');
 
 // models
 const Event = require('./models/Event');
-// const User = require('./models/User');
+const User = require('./models/User');
 
 // custom middleware
-// const authMiddleware = require('./middleware/authMiddleware');
-// const redirectIfAuthMiddleware = require('./middleware/redirectIfAuthMiddleware');
+const authMiddleware = require('./middleware/authMiddleware');
+const redirectIfAuthMiddleware = require('./middleware/redirectIfAuthMiddleware');
 
 
 // Connection to database
@@ -47,8 +47,6 @@ app.use(expressSession ({
 
 // HTTP requests handlers
 // app.get('/', authMiddleware, homeController);
-// const testController = require('./controllers/testController');
-// app.get('/test', testController);
 app.get('/home', homeController);
 // app.get('/auth/login', redirectIfAuthMiddleware, (req, res) => {
 //     res.render('login', {
@@ -59,6 +57,7 @@ app.get('/home', homeController);
 
 // app.post('/users/register', redirectIfAuthMiddleware, registerController);
 // app.post('/users/login', redirectIfAuthMiddleware, loginController);
+app.post('/users/login',redirectIfAuthMiddleware, loginController);
 app.post('/event/create', createController);
 app.post('/event/update', updateController);
 // app.post('/event/delete', deleteController);
