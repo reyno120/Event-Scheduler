@@ -30,6 +30,9 @@ mongoose.connect(connection.mongoURI, {useNewUrlParser: true, useUnifiedTopology
 
 // middleware
 const app = express();
+// app.use(cors({
+//     origin: "http://localhost:4200"
+// }));
 // app.set('view engine', 'ejs');
 // app.use('/assets', express.static('assets'));
 app.use(bodyParser.json());
@@ -54,10 +57,13 @@ app.get('/home', homeController);
 //     });
 // });
 // app.get('/auth/logout', logoutController);
+app.get('auth/login', (req, res) => {
+    res.send(true);
+})
 
 // app.post('/users/register', redirectIfAuthMiddleware, registerController);
 // app.post('/users/login', redirectIfAuthMiddleware, loginController);
-app.post('/users/login',redirectIfAuthMiddleware, loginController);
+app.post('/users/login', loginController);
 app.post('/event/create', createController);
 app.post('/event/update', updateController);
 // app.post('/event/delete', deleteController);

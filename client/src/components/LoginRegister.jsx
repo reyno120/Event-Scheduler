@@ -26,19 +26,26 @@ class LoginRegister extends Component {
             loginPass: '',
             registerUser: '',
             registerEmail: '',
-            registerPass: ''
+            registerPass: '',
+            displayIncorrect: 'none'
         }
     }
 
-    handleLoginSubmit = () => {
+    handleLoginSubmit = (e) => {
+        e.preventDefault();
         const { loginUser, loginPass } = this.state;
 
         axios.post('users/login', {loginUser, loginPass})
             .then((res) => {
-                console.log(res.data.data);
-                if(res.data.data) {
+                if(res.data.userFound) {
                     this.setState({open: false});
                 }
+                else {
+                    this.setState({displayIncorrect: 'block'});
+                }
+            })
+            .catch((error) => {
+                console.log(error);
             });
     }
 
@@ -48,13 +55,14 @@ class LoginRegister extends Component {
 
     render() {
         const { classes } = this.props;
-        const { loginUser, loginPass, registerUser, registerEmail, registerPass } = this.state; 
+        const { loginUser, loginPass, registerUser, registerEmail, registerPass } = this.state;
         return (  
             <div>
                 <Dialog fullScreen open={this.state.open}>
                     <DialogContent style={{backgroundColor: '#3f51b5'}}>
                         <form onSubmit={this.handleLoginSubmit}>
                             <DialogContentText style={{fontSize: '2rem', color: 'white', fontWeight: 'bold', textAlign: 'center'}}>Login</DialogContentText>
+                            <DialogContentText style={{color: 'red', textAlign: 'center', display: this.state.displayIncorrect}}>* Incorrect Username or Passsword</DialogContentText>
                             <TextField 
                                 autoFocus
                                 margin="dense"

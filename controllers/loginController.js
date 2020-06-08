@@ -6,27 +6,26 @@ module.exports = (req, res) => {
 
     User.findOne({username:loginUser}, (error, user) => {
         var userFound = false;
-        if(error) { // maybe???
-            // const validationErrors = Object.keys(error.errors).map(key => error.errors[key].message);
-            // req.flash('validationErrors', validationErrors);
-            // return res.redirect('/auth/login');
-            res.send(userFound);
+        if(error) {
+            res.json({userFound});
         }
         if(user) {
             bcrypt.compare(loginPass, user.password, (error, same) => {
-                if(same) {
-                    req.session.userId = user._id;
-                    // res.redirect('/');  // needs to fix for validation
+                if(same) {  // Correct pass
+                    req.session.userId = user._id;  // Setting session ID in browser to User ID stored in database
                     userFound = true;
-                    // res.setHeader('Content-Type', 'users/login');
-                    console.log("User found, sending back response");
-                    res.send({userFound: true});
+                    res.json({userFound});
                 }
-                else {
-                    // res.redirect('/auth/login');    // does this need changed?
-                    res.send(userFound);
+                else {  // Incorrect pass
+                    userFound = false;
+                    res.json({userFound});
                 }
             });
+        }
+        // If no user found
+        else {
+            userFound = false;
+            res.json({userFound});
         }
     });
 }
