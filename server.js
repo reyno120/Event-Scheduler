@@ -22,6 +22,7 @@ const User = require('./models/User');
 // custom middleware
 const authMiddleware = require('./middleware/authMiddleware');
 const redirectIfAuthMiddleware = require('./middleware/redirectIfAuthMiddleware');
+const checkIfAuth = require('./middleware/checkIfAuth');
 
 
 // Connection to database
@@ -50,16 +51,16 @@ app.use(expressSession ({
 
 // HTTP requests handlers
 // app.get('/', authMiddleware, homeController);
-app.get('/home', homeController);
+app.get('/home', checkIfAuth, homeController);
 // app.get('/auth/login', redirectIfAuthMiddleware, (req, res) => {
 //     res.render('login', {
 //         errors: flash('validationErrors')
 //     });
 // });
 // app.get('/auth/logout', logoutController);
-app.get('auth/login', (req, res) => {
-    res.send(true);
-})
+// app.get('auth/login', (req, res) => {
+//     res.send(true);
+// })
 
 // app.post('/users/register', redirectIfAuthMiddleware, registerController);
 // app.post('/users/login', redirectIfAuthMiddleware, loginController);

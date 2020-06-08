@@ -21,6 +21,7 @@ class LoginRegister extends Component {
         super(props);
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
         this.state = {
+            // open: this.props.isLoggedIn,
             open: true,
             loginUser: '',
             loginPass: '',
@@ -39,6 +40,7 @@ class LoginRegister extends Component {
             .then((res) => {
                 if(res.data.userFound) {
                     this.setState({open: false});
+                    this.props.getUserEvents();
                 }
                 else {
                     this.setState({displayIncorrect: 'block'});
