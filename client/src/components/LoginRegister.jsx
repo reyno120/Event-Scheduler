@@ -20,9 +20,12 @@ class LoginRegister extends Component {
     constructor(props) {
         super(props);
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+        // localStorage.setItem('notLoggedIn', 'true');
+        console.log("should be false");
+        console.log(this.props.openLoginDialog);
         this.state = {
             // open: this.props.isLoggedIn,
-            open: true,
+            // open: JSON.parse(localStorage.getItem('notLoggedIn')),
             loginUser: '',
             loginPass: '',
             registerUser: '',
@@ -39,6 +42,7 @@ class LoginRegister extends Component {
         axios.post('users/login', {loginUser, loginPass})
             .then((res) => {
                 if(res.data.userFound) {
+                    // window.localStorage.setItem('isLoggedIn', JSON.stringify(true));
                     this.setState({open: false});
                     this.props.getUserEvents();
                 }
@@ -51,16 +55,25 @@ class LoginRegister extends Component {
             });
     }
 
+    // Checks if user is logged in by means of localStorage on client's side
+    // checkIfLoggedIn() {
+    //     if(JSON.parse(localStorage.getItem('isLoggedIn')) === 'true') {
+    //         return false;
+    //     }
+    //     return true;
+    // }
+
     onChange = (e) => {
         this.setState({[e.target.name]: e.target.value});
     }
 
     render() {
+        // console.log(localStorage.getItem('notLoggedIn'));
         const { classes } = this.props;
         const { loginUser, loginPass, registerUser, registerEmail, registerPass } = this.state;
         return (  
             <div>
-                <Dialog fullScreen open={this.state.open}>
+                <Dialog fullScreen open={this.props.openLoginDialog}>
                     <DialogContent style={{backgroundColor: '#3f51b5'}}>
                         <form onSubmit={this.handleLoginSubmit}>
                             <DialogContentText style={{fontSize: '2rem', color: 'white', fontWeight: 'bold', textAlign: 'center'}}>Login</DialogContentText>

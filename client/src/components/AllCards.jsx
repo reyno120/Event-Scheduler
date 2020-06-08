@@ -12,29 +12,20 @@ class AllCards extends Component {
         this.state = {
           userEvents: [],
           displaySetting: 'block',  // Display "add event" card or not
+          openLoginDialog: 'true'
         //   isLoggedIn: false         // Display cards if logged in, if not display login screen
         }
       }
 
-    // componentDidMount() {
-    //     axios.get('/home')
-    //       .then(res => {
-    //         this.setState({userEvents: res.data.userEvents});
-    //         // if(res.data.loggedIn) {
-    //         //     this.setState({isLoggedIn: true});
-    //         // }
-    //       });
-    //   }
-
-    // componentWillUpdate() {
-    //     axios.get('/home')
-    //       .then(res => {
-    //         this.setState({userEvents: res.data.userEvents});
-    //         // if(res.data.loggedIn) {
-    //         //     this.setState({isLoggedIn: true});
-    //         // }
-    //       });
-    //   }
+    componentDidMount() {
+        axios.get('/home')
+          .then(res => {
+            this.setState({userEvents: res.data.userEvents});
+            if(res.data.userEvents.length > 0) {
+                this.setState({openLoginDialog: false});
+            }
+          });
+      }
 
     // Checks if all card slots are being used, if not display one that says "add event"
     checkIfFull() {
@@ -44,28 +35,21 @@ class AllCards extends Component {
         return 'block';
     }
 
-    // getUserEvents() {   // Get user events if logged in
-    //     axios.get('/home')
-    //       .then(res => {
-    //         this.setState({userEvents: res.data.userEvents});
-    //         // if(res.data.loggedIn) {
-    //         //     this.setState({isLoggedIn: true});
-    //         // }
-    //     });
-    // }
-
-    getUserEvents = () => {   // Get user events if logged in
+    // Get user events if logged in
+    getUserEvents = () => {
         axios.get('/home')
             .then(res => {
                 this.setState({userEvents: res.data.userEvents});
+                this.setState({openLoginDialog: false});
             });
     }
 
     render() {
-        // this.getUserEvents(); 
+        console.log("getting ready to render");
+        console.log(this.state.openLoginDialog);
         return (
             <div>
-                <LoginRegister getUserEvents={this.getUserEvents}></LoginRegister>
+                <LoginRegister getUserEvents={this.getUserEvents} openLoginDialog={this.state.openLoginDialog}></LoginRegister>
                 <Grid container spacing={6} style={{marginTop: '.5em'}}>
                     {this.state.userEvents.map((details, index) => (
                         <Grid item xs={2} style={{marginLeft: '2em', marginRight: '2em'}}>
