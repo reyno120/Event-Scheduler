@@ -5,7 +5,9 @@ module.exports = (req, res) => {
         eventName: req.body.eventName,
         userid: req.session.userId 
     },
-    function(err, event) {
-        return res.redirect('/');
+    function(error, event) {
+        if(error) throw error;
+        console.log("event deleted");
+        res.json(event);
     });
 }

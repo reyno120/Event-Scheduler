@@ -14,12 +14,16 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import MenuItem from '@material-ui/core/MenuItem';
 import moment from 'moment';
 import axios from 'axios';
+import { DialogContentText } from '@material-ui/core';
 
 class SingleCard extends Component {
         constructor(props) {
             super(props);
             this.handleClickOpen = this.handleClickOpen.bind(this);
             this.handleClickClose = this.handleClickClose.bind(this);
+            this.handleInfoClickOpen = this.handleInfoClickOpen.bind(this);
+            this.handleInfoClickClose = this.handleInfoClickClose.bind(this);
+            this.handleDeleteClick = this.handleDeleteClick.bind(this);
             this.state = {
                 open: false,
                 setOpen: false,
@@ -28,7 +32,9 @@ class SingleCard extends Component {
                 eventDate: this.props.eventDate,
                 eventTime: this.props.eventTime,
                 eventReminder: this.props.eventReminder,
-                objectId: this.props.objectId
+                eventDesc: this.props.eventDesc,
+                objectId: this.props.objectId,
+                infoOpen: false
             }
         }
 
@@ -41,12 +47,32 @@ class SingleCard extends Component {
             this.setState({open: false});
         }
 
-        handleSubmit = () => {
-            const { eventName, eventLoc, eventDate, eventTime, eventReminder, objectId } = this.state;
-    
-            axios.post('event/update', {eventName, eventLoc, eventDate, eventTime, eventReminder, objectId})
+        handleInfoClickOpen() {
+            this.setState({infoOpen: true});
+        }
+
+        handleInfoClickClose() {
+            this.setState({infoOpen: false});
+        }
+
+        handleDeleteClick() {
+            const { eventName } = this.state;
+
+            axios.post('/event/delete', {eventName})
                 .then((res) => {
-                    console.log("Posted Update!");
+                    this.props.getUserEvents();
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+
+        handleSubmit = () => {
+            const { eventName, eventLoc, eventDate, eventTime, eventReminder, eventDesc, objectId } = this.state;
+    
+            axios.post('event/update', {eventName, eventLoc, eventDate, eventTime, eventReminder, eventDesc, objectId})
+                .then((res) => {
+                    // console.log("Posted Update!");
                 });
         }
     
@@ -77,14 +103,15 @@ class SingleCard extends Component {
             fullTime = fullTime + " AM";
         }
 
-        // Display a prettier date using moment.js
+        // Display a visually appealing date using moment.js
         const eventDate = moment(this.props.eventDate).format('MMMM Do YYYY');
-
-        // Obtain state values for form
-        // const { eventName, eventLoc, eventTime, eventReminder } = this.state;
 
         return (
             <div>
+                <Dialog open={this.state.infoOpen} onClose={this.handleInfoClickClose} onBackdropClick={this.handleInfoClickClose}>
+                    <DialogTitle>{this.props.eventName}</DialogTitle>
+                    <DialogContent><DialogContentText>{this.state.eventDesc}</DialogContentText></DialogContent>
+                </Dialog>
                 <Dialog open={this.state.open} onClose={this.handleClickClose} onBackdropClick={this.handleClickClose}>
                     <DialogTitle 
                         id="form-dialog-title" 
@@ -97,7 +124,9 @@ class SingleCard extends Component {
                                 autoFocus
                                 margin="dense"
                                 id="eventName"
+                                name="eventName"
                                 label="Event Name"
+                                value={this.state.eventName}
                                 onChange={this.onChange}
                                 type="text"
                                 fullWidth
@@ -107,7 +136,9 @@ class SingleCard extends Component {
                                 autoFocus
                                 margin="dense"
                                 id="eventLoc"
+                                name="eventLoc"
                                 label="Location"
+                                value={this.state.eventLoc}
                                 onChange={this.onChange}
                                 type="text"
                                 fullWidth
@@ -117,6 +148,8 @@ class SingleCard extends Component {
                                 autoFocus
                                 margin="dense"
                                 id="eventDate"
+                                name="eventDate"
+                                value={this.state.eventDate}
                                 onChange={this.onChange}
                                 type="date"
                                 fullWidth
@@ -126,6 +159,8 @@ class SingleCard extends Component {
                                 autoFocus
                                 margin="dense"
                                 id="eventTime"
+                                name="eventTime"
+                                value={this.state.eventTime}
                                 onChange={this.onChange}
                                 type="time"
                                 fullWidth
@@ -135,7 +170,9 @@ class SingleCard extends Component {
                                 autoFocus
                                 margin="dense"
                                 id="eventReminder"
+                                name="eventReminder"
                                 label="Set Reminder"
+                                value={this.state.eventReminder}
                                 onChange={this.onChange}
                                 select
                                 fullWidth
@@ -150,7 +187,9 @@ class SingleCard extends Component {
                                 autoFocus
                                 margin="dense"
                                 id="eventDesc"
+                                name="eventDesc"
                                 label="Description"
+                                value={this.state.eventDesc}
                                 onChange={this.onChange}
                                 type="text"
                                 fullWidth
@@ -181,8 +220,8 @@ class SingleCard extends Component {
                         <Button variant="contained" style={{marginLeft: '4.5em'}} onClick={this.handleClickOpen}>Edit Details</Button>
                     </CardActions>
                     <CardActions disableSpacing>
-                        <InfoOutlinedIcon style={{cursor: 'pointer'}} onClick={this.handleClick}></InfoOutlinedIcon>
-                        <DeleteIcon style={{cursor: 'pointer', marginLeft: '9em'}}></DeleteIcon>
+                        <InfoOutlinedIcon style={{cursor: 'pointer'}} onClick={this.handleInfoClickOpen}></InfoOutlinedIcon>
+                        <DeleteIcon style={{cursor: 'pointer', marginLeft: '9em'}} onClick={this.handleDeleteClick}></DeleteIcon>
                     </CardActions>
                 </Card>
             </div>  

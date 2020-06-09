@@ -13,7 +13,7 @@ const homeController = require('./controllers/homeController');
 // const logoutController = require('./controllers/logoutController');
 const createController = require('./controllers/createController');
 const updateController = require('./controllers/updateController');
-// const deleteController = require('./controllers/deleteController');
+const deleteController = require('./controllers/deleteController');
 
 // models
 const Event = require('./models/Event');
@@ -43,7 +43,10 @@ mongoose.set('useCreateIndex', true);
 app.use(expressSession ({
     secret: 'vanille latte',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    path: '/home'
+    // resave: false,
+    // saveUninitialized: false
 }));
 // app.use(flash());
 // app.use(cors());
@@ -68,6 +71,6 @@ app.post('/users/register', registerController);
 app.post('/users/login', loginController);
 app.post('/event/create', createController);
 app.post('/event/update', updateController);
-// app.post('/event/delete', deleteController);
+app.post('/event/delete', deleteController);
 
 app.listen(4200);

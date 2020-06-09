@@ -19,7 +19,6 @@ class AllCards extends Component {
         axios.get('/home')
           .then(res => {
             this.setState({userEvents: res.data.userEvents});
-            console.log(res.data.userEvents);
             if(res.data.userEvents.length > 0) {
                 this.setState({openLoginDialog: false});
             }
@@ -56,7 +55,9 @@ class AllCards extends Component {
                                 eventDate={details.eventDate} 
                                 eventLoc={details.eventLoc}
                                 eventTime={details.eventTime}
+                                eventDesc={details.eventDesc}
                                 objectId={details._id}
+                                getUserEvents={this.getUserEvents}
                                 >
                             </SingleCard>
                         </Grid>

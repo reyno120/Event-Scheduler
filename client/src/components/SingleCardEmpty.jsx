@@ -25,7 +25,8 @@ class SingleCardEmpty extends Component {
             eventLoc: '',
             eventDate: null,
             eventTime: null,
-            eventReminder: ''
+            eventReminder: '',
+            eventDesc: ''
         }
     }
 
@@ -39,11 +40,11 @@ class SingleCardEmpty extends Component {
     }
 
     handleSubmit = () => {
-        const { eventName, eventLoc, eventDate, eventTime, eventReminder } = this.state;
+        const { eventName, eventLoc, eventDate, eventTime, eventReminder, eventDesc } = this.state;
 
-        axios.post('event/create', {eventName, eventLoc, eventDate, eventTime, eventReminder})
+        axios.post('event/create', {eventName, eventLoc, eventDate, eventTime, eventReminder, eventDesc})
             .then((res) => {
-                console.log("Posted Create!");
+                // console.log("Posted Create!");
             });
     }
 
@@ -52,7 +53,7 @@ class SingleCardEmpty extends Component {
     }
 
     render() {
-        const { eventName, eventLoc, eventDate, eventTime, eventReminder } = this.state;
+        const { eventName, eventLoc, eventDate, eventTime, eventReminder, eventDesc } = this.state;
 
         return (
             <div>
@@ -132,6 +133,9 @@ class SingleCardEmpty extends Component {
                             margin="dense"
                             id="eventDesc"
                             label="Description"
+                            name="eventDesc"
+                            value={eventDesc}
+                            onChange={this.onChange}
                             type="text"
                             fullWidth
                             required
