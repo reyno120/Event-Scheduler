@@ -28,7 +28,8 @@ class LoginRegister extends Component {
             registerUser: '',
             registerEmail: '',
             registerPass: '',
-            displayIncorrect: 'none'
+            displayIncorrect: 'none',
+            displayInvalidRegistration: 'none'
         }
     }
 
@@ -62,6 +63,7 @@ class LoginRegister extends Component {
         axios.post('users/register', {registerUser, registerEmail, registerPass})
             .then((res) => {
                 if(res.data.userExists) {
+                    this.setState({displayInvalidRegistration: 'block'});
                     // Do some error handling
                 }
                 else {
@@ -118,6 +120,7 @@ class LoginRegister extends Component {
                         </form>
                         <form onSubmit={this.handleRegisterSubmit}>
                             <DialogContentText style={{fontSize: '2rem', color: 'white', fontWeight: 'bold', textAlign: 'center'}}>Register</DialogContentText>
+                            <DialogContentText style={{color: 'red', textAlign: 'center', display: this.state.displayInvalidRegistration}}>* Username or email already in use</DialogContentText>
                             <TextField 
                                 autoFocus
                                 margin="dense"
