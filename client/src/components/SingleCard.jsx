@@ -81,7 +81,7 @@ class SingleCard extends Component {
         const eventDate = moment(this.props.eventDate).format('MMMM Do YYYY');
 
         // Obtain state values for form
-        const { eventName, eventLoc, eventTime, eventReminder } = this.state;
+        // const { eventName, eventLoc, eventTime, eventReminder } = this.state;
 
         return (
             <div>

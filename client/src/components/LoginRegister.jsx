@@ -20,12 +20,9 @@ class LoginRegister extends Component {
     constructor(props) {
         super(props);
         this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
-        // localStorage.setItem('notLoggedIn', 'true');
-        console.log("should be false");
-        console.log(this.props.openLoginDialog);
+        this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
+        this.logUserIn = this.logUserIn.bind(this);
         this.state = {
-            // open: this.props.isLoggedIn,
-            // open: JSON.parse(localStorage.getItem('notLoggedIn')),
             loginUser: '',
             loginPass: '',
             registerUser: '',
@@ -37,12 +34,15 @@ class LoginRegister extends Component {
 
     handleLoginSubmit = (e) => {
         e.preventDefault();
+        this.logUserIn();
+    }
+
+    logUserIn() {
         const { loginUser, loginPass } = this.state;
 
         axios.post('users/login', {loginUser, loginPass})
             .then((res) => {
                 if(res.data.userFound) {
-                    // window.localStorage.setItem('isLoggedIn', JSON.stringify(true));
                     this.setState({open: false});
                     this.props.getUserEvents();
                 }
@@ -55,22 +55,32 @@ class LoginRegister extends Component {
             });
     }
 
-    // Checks if user is logged in by means of localStorage on client's side
-    // checkIfLoggedIn() {
-    //     if(JSON.parse(localStorage.getItem('isLoggedIn')) === 'true') {
-    //         return false;
-    //     }
-    //     return true;
-    // }
+    handleRegisterSubmit = (e) => {
+        e.preventDefault();
+        const { registerUser,  registerEmail, registerPass } = this.state;
+
+        axios.post('users/register', {registerUser, registerEmail, registerPass})
+            .then((res) => {
+                if(res.data.userExists) {
+                    // Do some error handling
+                }
+                else {
+                    this.setState({loginUser: registerUser, loginPass: registerPass});
+                    this.logUserIn();
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
     onChange = (e) => {
         this.setState({[e.target.name]: e.target.value});
     }
 
     render() {
-        // console.log(localStorage.getItem('notLoggedIn'));
         const { classes } = this.props;
-        const { loginUser, loginPass, registerUser, registerEmail, registerPass } = this.state;
+        // const { loginUser, loginPass, registerUser, registerEmail, registerPass } = this.state;
         return (  
             <div>
                 <Dialog fullScreen open={this.props.openLoginDialog}>
@@ -106,7 +116,7 @@ class LoginRegister extends Component {
                             />
                             <Button variant="contained" type="submit" style={{display: 'block', color: '#3f51b5', margin: 'auto', marginBottom: '6em'}}>Login</Button>
                         </form>
-                        <form>
+                        <form onSubmit={this.handleRegisterSubmit}>
                             <DialogContentText style={{fontSize: '2rem', color: 'white', fontWeight: 'bold', textAlign: 'center'}}>Register</DialogContentText>
                             <TextField 
                                 autoFocus

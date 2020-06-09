@@ -1,13 +1,20 @@
 const User = require('../models/User');
-const path = require('path');
 
 module.exports = (req, res) => {
-    User.create(req.body, (error, user) => {
+    User.create({
+        username: req.body.registerUser, 
+        password: req.body.registerPass, 
+        email: req.body.registerEmail
+    }, 
+    (error, user) => {
         if(error) {
-            const validationErrors = Object.keys(error.errors).map(key => error.errors[key].message);
-            req.flash('validationErrors', validationErrors);
-            return res.redirect('/auth/login');
+            res.json({userExists: true});
+            console.log("user exists, not creating");
+            console.log(error);
         }
-        res.redirect('/');
+        else {
+            res.json({userExists: false});
+            console.log("User created!");
+        }
     });
 }

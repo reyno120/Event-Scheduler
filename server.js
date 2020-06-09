@@ -7,7 +7,7 @@ const expressSession = require('express-session');
 // const cors = require('cors');
 
 // controllers
-// const registerController = require('./controllers/registerController');
+const registerController = require('./controllers/registerController');
 const loginController = require('./controllers/loginController');
 const homeController = require('./controllers/homeController');
 // const logoutController = require('./controllers/logoutController');
@@ -64,6 +64,7 @@ app.get('/home', checkIfAuth, homeController);
 
 // app.post('/users/register', redirectIfAuthMiddleware, registerController);
 // app.post('/users/login', redirectIfAuthMiddleware, loginController);
+app.post('/users/register', registerController);
 app.post('/users/login', loginController);
 app.post('/event/create', createController);
 app.post('/event/update', updateController);

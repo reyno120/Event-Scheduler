@@ -8,12 +8,10 @@ import LoginRegister from './LoginRegister';
 class AllCards extends Component {
     constructor(props) {
         super(props)
-        // this.getUserEvents = this.getUserEvents.bind(this);
         this.state = {
           userEvents: [],
           displaySetting: 'block',  // Display "add event" card or not
           openLoginDialog: 'true'
-        //   isLoggedIn: false         // Display cards if logged in, if not display login screen
         }
       }
 
@@ -21,6 +19,7 @@ class AllCards extends Component {
         axios.get('/home')
           .then(res => {
             this.setState({userEvents: res.data.userEvents});
+            console.log(res.data.userEvents);
             if(res.data.userEvents.length > 0) {
                 this.setState({openLoginDialog: false});
             }
@@ -45,8 +44,6 @@ class AllCards extends Component {
     }
 
     render() {
-        console.log("getting ready to render");
-        console.log(this.state.openLoginDialog);
         return (
             <div>
                 <LoginRegister getUserEvents={this.getUserEvents} openLoginDialog={this.state.openLoginDialog}></LoginRegister>
