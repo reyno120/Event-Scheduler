@@ -10,6 +10,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
 import axios from 'axios';
 
 class SingleCardEmpty extends Component {
@@ -25,7 +27,7 @@ class SingleCardEmpty extends Component {
             eventLoc: '',
             eventDate: null,
             eventTime: null,
-            eventReminder: '',
+            eventReminder: 'At time of event',
             eventDesc: ''
         }
     }
@@ -111,23 +113,24 @@ class SingleCardEmpty extends Component {
                             fullWidth
                             required
                         />
-                        <TextField 
+                        <InputLabel id="setReminderLabel" style={{fontSize: '.8rem'}}>Set Reminder</InputLabel>
+                        <Select 
                             autoFocus
                             margin="dense"
                             id="eventReminder"
                             name="eventReminder"
-                            label="Set Reminder"
+                            labelId="setReminderLabel"
                             value={eventReminder}
                             onChange={this.onChange}
                             select
                             fullWidth
                         >
-                            <MenuItem>At time of event</MenuItem>
-                            <MenuItem>1 hour</MenuItem>
-                            <MenuItem>2 hours</MenuItem>
-                            <MenuItem>1 Week</MenuItem>
-                            <MenuItem>2 Week</MenuItem>
-                        </TextField>
+                            <MenuItem value={'At time of event'}>At time of event</MenuItem>
+                            <MenuItem value={'1 hour'}>1 hour</MenuItem>
+                            <MenuItem value={'2 hours'}>2 hours</MenuItem>
+                            <MenuItem value={'1 week'}>1 Week</MenuItem>
+                            <MenuItem value={'2 weeks'}>2 Weeks</MenuItem>
+                        </Select>
                         <TextField 
                             autoFocus
                             margin="dense"

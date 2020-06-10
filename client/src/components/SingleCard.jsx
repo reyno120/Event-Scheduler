@@ -15,6 +15,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import moment from 'moment';
 import axios from 'axios';
 import { DialogContentText } from '@material-ui/core';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 
 class SingleCard extends Component {
         constructor(props) {
@@ -166,23 +168,24 @@ class SingleCard extends Component {
                                 fullWidth
                                 required
                             />
-                            <TextField 
+                            <InputLabel id="setReminderLabel" style={{fontSize: '.8rem'}}>Set Reminder</InputLabel>
+                            <Select 
                                 autoFocus
                                 margin="dense"
                                 id="eventReminder"
                                 name="eventReminder"
-                                label="Set Reminder"
+                                labelId="setReminderLabel"
                                 value={this.state.eventReminder}
                                 onChange={this.onChange}
                                 select
                                 fullWidth
                             >
-                                <MenuItem>At time of event</MenuItem>
-                                <MenuItem>1 hour</MenuItem>
-                                <MenuItem>2 hours</MenuItem>
-                                <MenuItem>1 Week</MenuItem>
-                                <MenuItem>2 Week</MenuItem>
-                            </TextField>
+                                <MenuItem value={'At time of event'}>At time of event</MenuItem>
+                                <MenuItem value={'1 hour'}>1 hour</MenuItem>
+                                <MenuItem value={'2 hours'}>2 hours</MenuItem>
+                                <MenuItem value={'1 week'}>1 Week</MenuItem>
+                                <MenuItem value={'2 weeks'}>2 Weeks</MenuItem>
+                            </Select>
                             <TextField 
                                 autoFocus
                                 margin="dense"

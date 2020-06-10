@@ -56,6 +56,7 @@ class AllCards extends Component {
                                 eventLoc={details.eventLoc}
                                 eventTime={details.eventTime}
                                 eventDesc={details.eventDesc}
+                                eventReminder={details.eventReminder}
                                 objectId={details._id}
                                 getUserEvents={this.getUserEvents}
                                 >
