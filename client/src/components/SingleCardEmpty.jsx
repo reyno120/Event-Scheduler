@@ -128,6 +128,8 @@ class SingleCardEmpty extends Component {
                             <MenuItem value={'At time of event'}>At time of event</MenuItem>
                             <MenuItem value={'1 hour'}>1 hour</MenuItem>
                             <MenuItem value={'2 hours'}>2 hours</MenuItem>
+                            <MenuItem value={'1 day'}>1 day</MenuItem>
+                            <MenuItem value={'2 days'}>2 days</MenuItem>
                             <MenuItem value={'1 week'}>1 Week</MenuItem>
                             <MenuItem value={'2 weeks'}>2 Weeks</MenuItem>
                         </Select>
