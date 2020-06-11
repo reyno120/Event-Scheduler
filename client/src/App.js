@@ -23,7 +23,7 @@ class App extends Component {
         style={{
           marginRight: '98em', 
           marginLeft: '2em', 
-          marginTop: '8em', 
+          marginTop: '4em', 
           backgroundColor:'#3f51b5', 
           color: 'white'}}>
             Photo by <span style={{fontWeight: 'bold'}}>{randomImage.author}</span> on <a style={{color: 'inherit'}} href="http://unsplash.com">unsplash</a>

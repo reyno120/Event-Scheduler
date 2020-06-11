@@ -11,7 +11,7 @@ const CronJob = require('cron').CronJob;
 const registerController = require('./controllers/registerController');
 const loginController = require('./controllers/loginController');
 const homeController = require('./controllers/homeController');
-// const logoutController = require('./controllers/logoutController');
+const logoutController = require('./controllers/logoutController');
 const createController = require('./controllers/createController');
 const updateController = require('./controllers/updateController');
 const deleteController = require('./controllers/deleteController');
@@ -78,7 +78,7 @@ app.get('/home', checkIfAuth, homeController);
 //         errors: flash('validationErrors')
 //     });
 // });
-// app.get('/auth/logout', logoutController);
+app.get('/auth/logout', logoutController);
 // app.get('auth/login', (req, res) => {
 //     res.send(true);
 // })
