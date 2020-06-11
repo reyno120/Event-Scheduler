@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const expressSession = require('express-session');
+const CronJob = require('cron').CronJob;
 // const flash = require('connect-flash');
 // const cors = require('cors');
 
@@ -55,18 +56,18 @@ app.use(expressSession ({
 
 
 // Cron Job
-jobController();
-// var job = new CronJob({
-//     cronTime: '00 20 10 * * *',
-//     onTick: function() {
-//         console.log("task ran");
-//         var date = new Date();
-//         Event.find({}, jobController);
+// jobController();
+var job = new CronJob({
+    cronTime: '00 00 8 * * *',
+    onTick: function() {
+        console.log("task ran");
+        var date = new Date();
+        Event.find({}, jobController);
 
-//     },
-//     timeZone: 'America/New_York'
-// });
-// job.start();
+    },
+    timeZone: 'America/New_York'
+});
+job.start();
 
 
 // HTTP requests handlers
