@@ -12,7 +12,8 @@
   "author": "Jacob Reynolds",
   "license": "ISC",
   "engines": {
-    "node": "13.7.0"
+    "node": "13.7.0",
+    "npm": "6.13.6"
   },
   "dependencies": {
     "bcrypt": "^4.0.0",
