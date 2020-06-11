@@ -3,7 +3,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const expressSession = require('express-session');
-const CronJob = require('cron').CronJob;
 // const flash = require('connect-flash');
 // const cors = require('cors');
 

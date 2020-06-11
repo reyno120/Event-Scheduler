@@ -2,6 +2,7 @@ const Event = require('../models/Event');
 const User = require('../models/User');
 const nodemailer = require('nodemailer');
 const moment = require('moment');
+const CronJob = require('cron').CronJob;
 
 needScheduling = (reminder, eventDate, todayDate) => {
     var eventIsToday = false;   // indicates if the event takes place today
@@ -60,6 +61,8 @@ needScheduling = (reminder, eventDate, todayDate) => {
 scheduleJob = (reminder, date, time, userid, name, loc) => {
     User.findOne({_id: userid}, function(error, user) {
         if (error) throw error;
+
+        // var jobDate = new Date(date);
         date = moment(date).format('MMMM Do YYYY');
 
         let transporter = nodemailer.createTransport({
@@ -79,15 +82,48 @@ scheduleJob = (reminder, date, time, userid, name, loc) => {
 
         switch(reminder) {
             case 'At time of event':
-                // statements
+                var hour = parseInt(time.substring(0,2));
+                var minute = parseInt(time.substring(3, 5));
+                var job = new CronJob({
+                    cronTime: '00 '+ minute +' '+ hour +' * * *',
+                    onTick: function() {
+                        transporter.sendMail(mailOptions, function(error, data) {
+                            if (error) throw error;
+                        });
+                    },
+                        timeZone: 'America/New_York'
+                    });
+                    job.start();
                 break;
     
             case '1 hour':
-                // statements
+                var hour = parseInt(time.substring(0,2)) - 1;
+                var minute = parseInt(time.substring(3, 5));
+                var job = new CronJob({
+                    cronTime: '00 '+ minute +' '+ hour +' * * *',
+                    onTick: function() {
+                        transporter.sendMail(mailOptions, function(error, data) {
+                            if (error) throw error;
+                        });
+                    },
+                        timeZone: 'America/New_York'
+                    });
+                    job.start();
                 break;
     
             case '2 hours':
-                // statements
+                var hour = parseInt(time.substring(0,2)) - 2;
+                var minute = parseInt(time.substring(3, 5));
+                var job = new CronJob({
+                    cronTime: '00 '+ minute +' '+ hour +' * * *',
+                    onTick: function() {
+                        transporter.sendMail(mailOptions, function(error, data) {
+                            if (error) throw error;
+                        });
+                    },
+                        timeZone: 'America/New_York'
+                    });
+                    job.start();
                 break;
     
             case '1 day':
@@ -133,7 +169,8 @@ module.exports = () => {
     
             // If event has passed, delete event, otherwise, send out reminder if needed
             if(date.getTime() > eventDate.getTime()) {  
-                Event.deleteOne({event}, function(error, event) {
+                Event.deleteOne({eventName: event.eventName, userid: event.userid}, function(error, event) {
+                    // console.log("Event has passed...deleting event");
                     if (error) throw error;
                 });
             }
