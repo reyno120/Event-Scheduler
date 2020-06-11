@@ -43,11 +43,7 @@ class SingleCardEmpty extends Component {
 
     handleSubmit = () => {
         const { eventName, eventLoc, eventDate, eventTime, eventReminder, eventDesc } = this.state;
-
-        axios.post('event/create', {eventName, eventLoc, eventDate, eventTime, eventReminder, eventDesc})
-            .then((res) => {
-                // console.log("Posted Create!");
-            });
+        axios.post('event/create', {eventName, eventLoc, eventDate, eventTime, eventReminder, eventDesc});
     }
 
     onChange = (e) => {

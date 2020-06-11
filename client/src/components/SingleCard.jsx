@@ -71,11 +71,7 @@ class SingleCard extends Component {
 
         handleSubmit = () => {
             const { eventName, eventLoc, eventDate, eventTime, eventReminder, eventDesc, objectId } = this.state;
-    
-            axios.post('event/update', {eventName, eventLoc, eventDate, eventTime, eventReminder, eventDesc, objectId})
-                .then((res) => {
-                    // console.log("Posted Update!");
-                });
+            axios.post('event/update', {eventName, eventLoc, eventDate, eventTime, eventReminder, eventDesc, objectId});
         }
     
         onChange = (e) => {

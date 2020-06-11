@@ -28,10 +28,6 @@ class Navbar extends Component {
             .then(res => {
                 window.location.reload();
             });
-            // .catch(error => {
-            //     if (error) throw error;
-            // });
-
     }
 
     render() { 

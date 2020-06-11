@@ -62,7 +62,6 @@ scheduleJob = (reminder, date, time, userid, name, loc) => {
     User.findOne({_id: userid}, function(error, user) {
         if (error) throw error;
 
-        // var jobDate = new Date(date);
         date = moment(date).format('MMMM Do YYYY');
 
         let transporter = nodemailer.createTransport({
@@ -170,7 +169,6 @@ module.exports = () => {
             // If event has passed, delete event, otherwise, send out reminder if needed
             if(date.getTime() > eventDate.getTime()) {  
                 Event.deleteOne({eventName: event.eventName, userid: event.userid}, function(error, event) {
-                    // console.log("Event has passed...deleting event");
                     if (error) throw error;
                 });
             }

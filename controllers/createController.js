@@ -1,6 +1,5 @@
 const Event = require('../models/Event');
 
-
 module.exports = (req, res) => {
     Event.create({
         eventName: req.body.eventName,

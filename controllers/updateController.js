@@ -13,7 +13,6 @@ module.exports = (req, res) => {
         userid: req.session.userId
     },
     function(error, result) {
-        console.log("Event Updated!");
         if(error) throw error;
         else res.send(result);
     });

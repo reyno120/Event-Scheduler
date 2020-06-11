@@ -64,7 +64,6 @@ class LoginRegister extends Component {
             .then((res) => {
                 if(res.data.userExists) {
                     this.setState({displayInvalidRegistration: 'block'});
-                    // Do some error handling
                 }
                 else {
                     this.setState({loginUser: registerUser, loginPass: registerPass});
@@ -82,7 +81,6 @@ class LoginRegister extends Component {
 
     render() {
         const { classes } = this.props;
-        // const { loginUser, loginPass, registerUser, registerEmail, registerPass } = this.state;
         return (  
             <div>
                 <Dialog fullScreen open={this.props.openLoginDialog}>
