@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const expressSession = require('express-session');
 const CronJob = require('cron').CronJob;
+const path = require('path');
 
 
 
@@ -75,4 +76,14 @@ app.post('/event/create', createController);
 app.post('/event/update', updateController);
 app.post('/event/delete', deleteController);
 
-app.listen(4200);
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
+
+const port = process.env.PORT || 4200;
+app.listen(port);
